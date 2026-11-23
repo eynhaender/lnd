@@ -18,6 +18,7 @@ type Chain struct {
 	MainNet         bool     `long:"mainnet" description:"Use the main network"`
 	TestNet3        bool     `long:"testnet" description:"Use the test network"`
 	TestNet4        bool     `long:"testnet4" description:"Use the testnet4 test network"`
+	TestNet5        bool     `long:"testnet5" description:"Use the testnet5 test network"`
 	SimNet          bool     `long:"simnet" description:"Use the simulation test network"`
 	RegTest         bool     `long:"regtest" description:"Use the regression test network"`
 	SigNet          bool     `long:"signet" description:"Use the signet test network"`

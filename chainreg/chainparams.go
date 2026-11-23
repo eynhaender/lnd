@@ -30,6 +30,14 @@ var BitcoinTestNet4Params = BitcoinNetParams{
 	CoinType: keychain.CoinTypeTestnet,
 }
 
+// BitcoinTestNet5Params contains parameters specific to the 5th version of the
+// test network.
+var BitcoinTestNet5Params = BitcoinNetParams{
+	Params:   &bitcoinCfg.TestNet5Params,
+	RPCPort:  "18354",
+	CoinType: keychain.CoinTypeTestnet,
+}
+
 // BitcoinMainNetParams contains parameters specific to the current Bitcoin
 // mainnet.
 var BitcoinMainNetParams = BitcoinNetParams{
@@ -65,5 +73,6 @@ var BitcoinRegTestNetParams = BitcoinNetParams{
 // configuration.
 func IsTestnet(params *BitcoinNetParams) bool {
 	return params.Params.Net == bitcoinWire.TestNet3 ||
-		params.Params.Net == bitcoinWire.TestNet4
+		params.Params.Net == bitcoinWire.TestNet4 ||
+		params.Params.Net == bitcoinWire.TestNet5
 }

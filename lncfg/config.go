@@ -113,9 +113,9 @@ func CleanAndExpandPath(path string) string {
 // NormalizeNetwork returns the common name of a network type used to create
 // file paths. This allows differently versioned networks to use the same path.
 func NormalizeNetwork(network string) string {
-	// The 4th testnet isn't the "default" yet, so we'll want to explicitly
-	// point that to a "testnet4" directory.
-	if network == "testnet4" {
+	// The 4th and 5th testnets aren't the "default" yet, so we'll want to
+	// explicitly point those to "testnet4" and "testnet5" directories.
+	if network == "testnet4" || network == "testnet5" {
 		return network
 	}
 

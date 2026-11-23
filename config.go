@@ -1383,6 +1383,10 @@ func ValidateConfig(cfg Config, interceptor signal.Interceptor, fileParser,
 		numNets++
 		cfg.ActiveNetParams = chainreg.BitcoinTestNet4Params
 	}
+	if cfg.Bitcoin.TestNet5 {
+		numNets++
+		cfg.ActiveNetParams = chainreg.BitcoinTestNet5Params
+	}
 	if cfg.Bitcoin.RegTest {
 		numNets++
 		cfg.ActiveNetParams = chainreg.BitcoinRegTestNetParams
@@ -1440,9 +1444,9 @@ func ValidateConfig(cfg Config, interceptor signal.Interceptor, fileParser,
 		cfg.ActiveNetParams.Params = &chainParams
 	}
 	if numNets > 1 {
-		str := "The mainnet, testnet, testnet4, regtest, simnet and " +
-			"signet params can't be used together -- choose one " +
-			"of the five"
+		str := "The mainnet, testnet, testnet4, testnet5, regtest, " +
+			"simnet and signet params can't be used together -- " +
+			"choose one of them"
 
 		return nil, mkErr(str)
 	}
@@ -1451,9 +1455,9 @@ func ValidateConfig(cfg Config, interceptor signal.Interceptor, fileParser,
 	// know how to initialize the daemon.
 	if numNets == 0 {
 		str := "either --bitcoin.mainnet, or --bitcoin.testnet, " +
-			"--bitcoin.testnet4, --bitcoin.simnet, " +
-			"--bitcoin.regtest or --bitcoin.signet must be " +
-			"specified"
+			"--bitcoin.testnet4, --bitcoin.testnet5, " +
+			"--bitcoin.simnet, --bitcoin.regtest or " +
+			"--bitcoin.signet must be specified"
 
 		return nil, mkErr(str)
 	}
@@ -2425,7 +2429,7 @@ func extractBitcoindRPCParams(networkName, bitcoindDataDir, bitcoindConfigPath,
 	switch networkName {
 	case "mainnet":
 		chainDir = ""
-	case "regtest", "testnet3", "testnet4", "signet":
+	case "regtest", "testnet3", "testnet4", "testnet5", "signet":
 		chainDir = networkName
 	default:
 		return "", "", "", "", fmt.Errorf("unexpected networkname %v", networkName)
